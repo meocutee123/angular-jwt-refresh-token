@@ -1,0 +1,19 @@
+<div class="d-flex flex-column">
+  <h1>Sercure page</h1>
+  <button class="mt-5 mb-3" mat-stroked-button color="accent" (click)="logout()">Log out</button>
+</div>
+<form class="d-flex flex-column">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Enter user email</mat-label>
+    <input type="email" matInput [formControl]="myControl" [errorStateMatcher]="matcher"
+           placeholder="Ex. pat@example.com">
+    <mat-error *ngIf="myControl.hasError('email') && !myControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="myControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+
+  </mat-form-field>
+  <button class="mt-5" [disabled]="(myControl.hasError('required') || myControl.hasError('email')) ? true : false" mat-stroked-button color="accent" (click)="getUser()">Get User</button>
+</form>

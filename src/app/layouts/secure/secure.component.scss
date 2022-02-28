@@ -1,0 +1,20 @@
+header {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  opacity: 0.7;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  div, nav {
+    max-width: 1640px;
+    margin: 0 auto;
+  }
+  div {
+    height: 145px;
+  }
+  nav {
+    height: 100px;
+  }
+}

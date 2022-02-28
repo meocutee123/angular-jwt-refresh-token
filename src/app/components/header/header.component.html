@@ -1,0 +1,61 @@
+<!--header start-->
+<section class="header">
+  <div class="container d-flex justify-content-between">
+    <div class="header-left">
+      <ul class="pull-left">
+        <li>
+          <a href="#">
+            <fa-icon [icon]="faCocktail"></fa-icon> +992 563 542
+          </a>
+        </li>
+        <!--/li-->
+        <li>
+          <a href="#">
+            <i class="fa fa-envelope" aria-hidden="true"></i>info@mail.com
+          </a>
+        </li>
+        <!--/li-->
+      </ul>
+      <!--/ul-->
+    </div>
+    <!--/.header-left -->
+    <div class="header-right pull-right">
+      <ul>
+        <li class="reg">
+          <a *ngIf="user != null; else elseBlock" href="#">
+            {{user.firstName + " " + user.lastName}}
+          </a>
+          <ng-template #elseBlock>
+            <a href="/login">
+              {{"Login" | uppercase | transform}}
+            </a>
+
+          </ng-template>
+          /
+          <a (click)="logout()">
+            Log out
+          </a>
+        </li>
+        <!--/li -->
+        <li>
+          <div class="social-icon">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+            <!--/.ul -->
+          </div>
+          <!--/.social-icon -->
+        </li>
+        <!--/li -->
+      </ul>
+      <!--/ul -->
+    </div>
+    <!--/.header-right -->
+  </div>
+  <!--/.container -->
+
+</section>
+<!--/.header-->

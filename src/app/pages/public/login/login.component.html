@@ -1,0 +1,17 @@
+<div class="container ">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="form-container d-flex flex-column mx-auto mt-5">
+    <img src="./assets/images/angular_logo.png" alt="" class="mb-3">
+    <mat-form-field appearance="fill" class="mb-2">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="meocuteequas" formControlName="username" required>
+      <mat-error *ngIf="isSubmitted && f['username'].invalid">Username cannot be blank</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="********" formControlName="password" required>
+      <mat-error *ngIf="isSubmitted && f['password'].invalid">Password cannot be blank</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="mt-2" type="submit">Login</button>
+  </form>
+
+</div>

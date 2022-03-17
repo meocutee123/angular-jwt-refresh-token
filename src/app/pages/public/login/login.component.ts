@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProgressComponent } from '@app/components/progress/progress.component';
 import { GetFormFields } from '@app/_helpers';
 import { AuthenticateRequest } from '@app/_models';
 import { AuthenticationService } from '@app/_services';
@@ -13,11 +14,12 @@ import { first } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
+  @ViewChild('progress') progressService! : ProgressComponent
+
   loginForm: FormGroup = new FormGroup({});
   returnUrl: string = ""
 
   isSubmitted: boolean = false;
-  isLoading: boolean = false;
   error: string = ""
   constructor(
     private formBuilder: FormBuilder,
@@ -43,19 +45,18 @@ export class LoginComponent implements OnInit {
     this.isSubmitted = true;
 
     if (this.loginForm.invalid) { return }
-    this.isLoading = true;
-
+    this.progressService.show()
+    
     const loginRequest : AuthenticateRequest = GetFormFields(this.loginForm, new AuthenticateRequest());
 
     this.authenticationService.login(loginRequest)
       .pipe(first())
       .subscribe({
         next: () => {
-          this.router.navigate([this.returnUrl]);
+            this.router.navigate([this.returnUrl])
         },
         error: error => {
           this.error = error;
-          this.isLoading = false;
         }
       });
   }

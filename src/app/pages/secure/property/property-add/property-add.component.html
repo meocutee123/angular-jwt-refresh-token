@@ -1,1 +1,93 @@
-<p>property-add works!</p>
+<div class="d-flex align-items-center f-title fw-bold">
+    <mat-icon aria-hidden="false">business</mat-icon>
+    Properties - Add New Property
+</div>
+<div class="form-wrapper d-flex justify-content-center gx-3">
+  <form [formGroup]="dynamicForm" class="d-flex flex-column px-3 mt-4">
+    <h3 class="fw-bold">Property Overiew</h3>
+    <div class="mb-3 d-flex flex-column">
+      <label class="fw-bold">Street Address</label>
+      <input class="app-control-input" formControlName="streetAddress"/>
+      <mat-error *ngIf="isSubmitted && f['streetAddress'].invalid">Street address is required</mat-error>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label class="fw-bold">Unit</label>
+      <input class="app-control-input" formControlName="unit"/>
+      <mat-error *ngIf="isSubmitted && f['unit'].invalid">Unit is required</mat-error>
+    </div>
+
+    <div class="mb-3 d-flex flex-column">
+      <label class="fw-bold">City</label>
+      <input class="app-control-input" formControlName="city"/>
+    </div>
+    
+    <div class="mb-3 d-flex flex-column">
+      <label class="fw-bold">State</label>
+      <input class="app-control-input" formControlName="state"/>
+    </div>
+    
+    <div class="mb-3 d-flex flex-column">
+      <label class="fw-bold">Zip Code</label>
+      <input class="app-control-input" formControlName="zipCode"/>
+    </div>
+    
+
+    <div class="features">
+      <mat-form-field appearance="legacy" class="me-2">
+        <mat-label>Enter a name</mat-label>
+        <input matInput>
+        <mat-hint class="d-flex align-items-center">
+          <mat-icon aria-hidden="false">lock</mat-icon>
+          Alias
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy" class="me-2">
+        <input matInput>
+      </mat-form-field>
+
+      <button mat-stroked-button color="warn" class="d-inline-block">Submit</button>
+    </div>
+    <div class="f-action mt-2">
+      <mat-icon aria-hidden="false" class="fw-bold me-1">add</mat-icon> Feature
+    </div>
+    <!-- <mat-form-field>
+      <mat-label>Condition</mat-label>
+      <mat-select formControlName="condition">
+        <mat-option *ngFor="let item of conditions" [value]="item.key">{{ item.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field class="mb-3">
+      <mat-label>Color</mat-label>
+      <input matInput formControlName="color"/>
+    </mat-form-field>
+  
+  
+    <mat-form-field *ngFor="let item of extrasInformation; let i = index" [formGroup]="item" class="mb-3">
+      <mat-label>{{hashmap[i].key | transform}}</mat-label>
+      <input matInput formControlName="{{hashmap[i].key}}"/>
+    </mat-form-field> -->
+  
+  
+    
+  </form>
+  <div class="form-progress">
+    <h2 class="fw-bold">Form Progress</h2>
+    <ul>
+      <li class="active">Property Overview</li>
+      <li></li>
+      <li>Gallery</li>
+      <li></li>
+      <li>Hightlights</li>
+      <li></li>
+      <li>Amenities</li>
+      <li></li>
+      <li>Additional Information</li>
+      <li></li>
+      <li>Landlord Information</li>
+    </ul>
+    <button class="save mt-4" mat-flat-button (click)="onSubmit()">Create</button>
+  </div>
+</div>

@@ -1,1 +1,14 @@
-<p>property works!</p>
+<div class="d-flex">
+  <div *ngFor="let property of properties; index as i" class="card m-2">
+    <div class="card-body" [routerLink]="'/back-office/property/' + property.id">
+      <h5 class="card-title">
+         {{ property.building?.unit }} - {{ property.building?.city }} - {{ property.building?.state }}
+      </h5>
+      <h6 class="card-subtitle">{{ property.building?.buildingAge }}</h6>
+      <p class="card-text">
+        {{ property.propertyType }}
+      </p>
+    </div>
+   
+  </div>
+</div>

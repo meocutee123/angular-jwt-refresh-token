@@ -19,6 +19,15 @@ import { SecureComponent } from './layouts/secure/secure.component';
 import { appInitializer, ErrorInterceptor, JwtInterceptor } from './_helpers';
 import { AuthenticationService } from './_services';
 import { TransformPipe } from './pipes/transform/transform.pipe';
+import { LandingComponent } from './pages/public/landing/landing.component';
+import { ProgressComponent } from './components/progress/progress.component';
+import { HighlightDirective } from './_helpers/directives/highlight.directive';
+import { LeaseAddComponent } from './pages/secure/lease/lease-add/lease-add.component';
+import { LeaseEditComponent } from './pages/secure/lease/lease-edit/lease-edit.component';
+import { PropertyAddComponent } from './pages/secure/property/property-add/property-add.component';
+import { PropertyComponent } from './pages/secure/property/property.component';
+import { PropertyDetailsComponent } from './pages/secure/property/property-details/property-details.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +38,16 @@ import { TransformPipe } from './pipes/transform/transform.pipe';
     HeaderComponent,
     PublicComponent,
     SecureComponent,
-    TransformPipe
+    TransformPipe,
+    LandingComponent,
+    ProgressComponent, 
+    LeaseAddComponent,
+    LeaseEditComponent,
+    PropertyComponent,
+    PropertyDetailsComponent,
+    PropertyAddComponent,
+    HighlightDirective,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

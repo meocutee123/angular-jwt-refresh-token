@@ -28,13 +28,12 @@ export class RegisterComponent implements OnInit {
   }
 
   get f() { return this.registerForm.controls }
-
   register() : void {
     this.isSubmitted = true
     if (this.registerForm.invalid) return
 
     const registerRequest : RegisterRequest  = GetFormFields(this.registerForm, new RegisterRequest())
-
+    
     this.authenticationService.register(registerRequest).pipe(first())
       .subscribe({
         next: () => {

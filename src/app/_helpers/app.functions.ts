@@ -1,4 +1,5 @@
-import { FormGroup } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ControlBase } from "@app/_models";
 
 export function GetFormFields<T>(fg : FormGroup, c : any) : T {
   const r = c;
@@ -6,4 +7,14 @@ export function GetFormFields<T>(fg : FormGroup, c : any) : T {
     r[i] = (fg as any).value[i]
   }
   return {...r};
+}
+
+export function ToFormGroup (cs: ControlBase<string>[]){
+  const g: any = {};
+
+  cs.forEach(c => {
+      g[c.key] = c.required ? new FormControl(c.value || '', Validators.required)
+                                              : new FormControl(c.value || '');
+    });
+    return new FormGroup(g);
 }

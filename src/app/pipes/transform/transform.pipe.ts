@@ -8,7 +8,7 @@ export class TransformPipe implements PipeTransform {
   nvalue : string | undefined
 
   transform(value: string, ...args: unknown[]): any {
-    this.nvalue = value.split('').reverse().join('-');
+    this.nvalue = value.charAt(0).toUpperCase() + value.slice(1);
     return this.nvalue;
 
   }

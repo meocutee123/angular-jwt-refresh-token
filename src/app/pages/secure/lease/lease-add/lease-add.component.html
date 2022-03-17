@@ -1,1 +1,33 @@
-<p>lease-add works!</p>
+<form [formGroup]="dynamicForm" class="d-flex flex-column p-3">
+
+  <h2 class="fw-bold">SURPLUS PROPERTY INFOMATION FORM</h2>
+
+  <mat-form-field class="mb-2" appearance="fill">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description"/>
+    <mat-error *ngIf="isSubmitted && f['description'].invalid">Property description is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Condition</mat-label>
+    <mat-select formControlName="condition">
+      <mat-option *ngFor="let item of conditions" [value]="item.key">{{ item.value }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="mb-2" appearance="fill">
+    <mat-label>Color</mat-label>
+    <input matInput formControlName="color"/>
+  </mat-form-field>
+
+
+  <mat-form-field *ngFor="let item of extrasInformation; let i = index" [formGroup]="item" class="mb-2" appearance="fill">
+    <mat-label>{{hashmap[i].key | transform}}</mat-label>
+    <input matInput formControlName="{{hashmap[i].key}}"/>
+  </mat-form-field>
+
+
+  <div class="d-flex justify-content-end">
+    <button mat-flat-button color="warn">Save</button>
+  </div>
+</form>

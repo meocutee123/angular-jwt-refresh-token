@@ -1,0 +1,15 @@
+header {
+  width: 100%;
+  background-color: #fff;
+  opacity: 0.7;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+header nav {
+  max-width: 1640px;
+  height: 145px;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=public.component.css.map */

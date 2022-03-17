@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tile } from '@app/_interfaces';
 import { UserService } from '@app/_services';
 
 @Component({
@@ -8,10 +9,17 @@ import { UserService } from '@app/_services';
 })
 export class LandingComponent implements OnInit {
 
-  pageTitle : string = 'Landing page';
-  myDate : Date = new Date();
+  pageTitle: string = 'Landing page';
+  myDate: Date = new Date();
 
-  constructor(private userService :UserService) { }
+  tiles: Tile[] = [
+    { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
+    { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
+    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
+    { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
+  ];
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }

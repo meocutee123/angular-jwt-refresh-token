@@ -6,4 +6,6 @@ import { RegisterComponent } from "@app/pages/public/register/register.component
 
 export const PUBLIC_ROUTES : Routes = [
   { path: '', component: LandingComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
 ];

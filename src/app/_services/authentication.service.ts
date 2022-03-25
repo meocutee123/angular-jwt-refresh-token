@@ -42,7 +42,7 @@ export class AuthenticationService {
       }));
   }
 
-  logout() {
+  logout() : void {
     console.log("AUTHENTICATION SERVICE - LOGOUT")
     this.http.post(`${environment.apiUrl}/Auth/revoke-token`, {}, { withCredentials: true }).subscribe();
     this.stopRefreshTokenTimer();

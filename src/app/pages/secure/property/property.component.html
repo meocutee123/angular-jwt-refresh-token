@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <div *ngFor="let property of properties; index as i" class="card m-2">
+  <div *ngFor="let property of properties | async; index as i" class="card m-2">
     <div class="card-body" [routerLink]="'/back-office/property/' + property.id">
       <h5 class="card-title">
          {{ property.building?.unit }} - {{ property.building?.city }} - {{ property.building?.state }}

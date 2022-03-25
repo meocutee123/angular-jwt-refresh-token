@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Property } from '@app/_models/property';
-import { PropertyService } from '@app/_services/property.service';
-
+import { Store } from '@ngrx/store';
+import * as FROM_PROPERTY_ACTIONS from '@app/store/property/property.actions';
+import * as FROM_PROPERTY_SELECTOR from '@app/store/property/property.selector';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-property-details',
   templateUrl: './property-details.component.html',
@@ -10,9 +12,9 @@ import { PropertyService } from '@app/_services/property.service';
 })
 export class PropertyDetailsComponent implements OnInit {
 
-  property: Property = null as any;
+  property: Observable<Property> = null as any;
 
-  constructor(private _propertyService: PropertyService,
+  constructor(private _store : Store,
     private _route: ActivatedRoute,
     private _router: Router) { }
 
@@ -22,11 +24,12 @@ export class PropertyDetailsComponent implements OnInit {
 
     if (queryId != null) {
       const propertyId: number = parseInt(queryId)
-
+      
       isNaN(propertyId) && this._router.navigate(['back-office/properties'])
-
-      this._propertyService.getByKey(propertyId)
-        .subscribe(result => this.property = result)
+      
+      this._store.dispatch(FROM_PROPERTY_ACTIONS.getPropertyByKeyAction({ key: propertyId }))
+      this.property = this._store.select(FROM_PROPERTY_SELECTOR.getProperty)
+      
     }
   }
 

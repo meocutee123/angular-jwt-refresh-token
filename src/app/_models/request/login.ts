@@ -1,4 +1,4 @@
 export class AuthenticateRequest {
-  email: string | undefined;
+  emailAddress: string | undefined;
   password: string | undefined;
 }

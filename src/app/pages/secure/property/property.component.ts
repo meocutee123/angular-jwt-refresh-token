@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as FROM_PROPERTY_ACTIONS from '@app/store/property/property.actions';
+import * as FROM_PROPERTY_SELECTOR from '@app/store/property/property.selector';
 import { Property } from '@app/_models/property';
-import { PropertyService } from '@app/_services/property.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-property',
@@ -10,16 +13,24 @@ import { PropertyService } from '@app/_services/property.service';
 })
 export class PropertyComponent implements OnInit {
 
-  properties : Property[] = []
+  properties: Observable<Property[]> = null as any
 
-  constructor(private _propertyService : PropertyService,
-    private _router : Router) { }
+  constructor(
+    private _router: Router,
+    private _store: Store) {
+
+  }
 
   ngOnInit(): void {
-    this._propertyService.getAll()
-      .subscribe(response => this.properties = response)
+    this._store.dispatch(FROM_PROPERTY_ACTIONS.getAllPropertiesAction())
+    this.getAllProperties();
   }
-  onPropertyClicked(id : number) : void {
-    this._router.navigate(["secure/property", id ]);
+
+  getAllProperties() {
+    this.properties = this._store.select(FROM_PROPERTY_SELECTOR.getAllProperties);
+  }
+
+  onPropertyClicked(id: number): void {
+    this._router.navigate(["secure/property", id]);
   }
 }

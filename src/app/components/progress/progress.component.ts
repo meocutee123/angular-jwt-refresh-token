@@ -8,13 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProgressComponent implements OnInit {
   @Input('color') color: string = 'accent'
 
-  hidden: boolean = true;
+  hidden: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  show() { this.hidden = false }
-  hide() { this.hidden = true }
+  show() { this.hidden = true }
+  hide() { this.hidden = false }
 }

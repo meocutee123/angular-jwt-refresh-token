@@ -28,6 +28,10 @@ import { PropertyAddComponent } from './pages/secure/property/property-add/prope
 import { PropertyComponent } from './pages/secure/property/property.component';
 import { PropertyDetailsComponent } from './pages/secure/property/property-details/property-details.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './store/reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { PropertyEffects } from './store/property/property.effects';
 
 @NgModule({
   declarations: [
@@ -40,14 +44,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     SecureComponent,
     TransformPipe,
     LandingComponent,
-    ProgressComponent, 
+    ProgressComponent,
     LeaseAddComponent,
     LeaseEditComponent,
     PropertyComponent,
     PropertyDetailsComponent,
     PropertyAddComponent,
     HighlightDirective,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ReactiveFormsModule,
     MaterialModule,
     FontAwesomeModule,
+    StoreModule.forRoot(reducer),
+    EffectsModule.forRoot([PropertyEffects]),
 
   ],
   providers: [

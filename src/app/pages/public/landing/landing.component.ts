@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tile } from '@app/_interfaces';
 import { UserService } from '@app/_services';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-landing',

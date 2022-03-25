@@ -26,6 +26,7 @@
       "@assets/*": ["app/assets/*"],
       "@app/*": ["src/app/*"],
       "@environments/*": ["src/environments/*"],
+      "@store/*": ["app/store/*"]
     }
   },
   "angularCompilerOptions": {

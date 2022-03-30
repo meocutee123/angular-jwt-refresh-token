@@ -16,6 +16,7 @@
       <input matInput placeholder="rosesarerosie@yg.kr" formControlName="email" required>
       <mat-error *ngIf="isSubmitted && f['email'].hasError('email')">Please enter valid email</mat-error>
       <mat-error *ngIf="isSubmitted && f['email'].hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="isSubmitted && f['email'].hasError('uniqueAccount')">Email already taken</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>

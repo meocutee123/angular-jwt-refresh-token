@@ -24,10 +24,10 @@ export class AuthenticationService {
     return this.userSubject.value;
   }
 
-  login(loginRequest : AuthenticateRequest) {
+  login(loginRequest: AuthenticateRequest) {
     console.log("AUTHENTICATION SERVICE - LOGIN")
     return this.http.post<AuthenticateResponse>(`${environment.apiUrl}/Auth/authenticate`, loginRequest, { withCredentials: true })
-      .pipe(map((user : AuthenticateResponse) => {
+      .pipe(map((user: AuthenticateResponse) => {
         this.userSubject.next(user);
         this.startRefreshTokenTimer();
         return user;
@@ -42,7 +42,7 @@ export class AuthenticationService {
       }));
   }
 
-  logout() : void {
+  logout(): void {
     console.log("AUTHENTICATION SERVICE - LOGOUT")
     this.http.post(`${environment.apiUrl}/Auth/revoke-token`, {}, { withCredentials: true }).subscribe();
     this.stopRefreshTokenTimer();
@@ -53,11 +53,15 @@ export class AuthenticationService {
   refreshToken() {
     console.log("AUTHENTICATION SERVICE - REFESH TOKEN")
     return this.http.post<AuthenticateResponse>(`${environment.apiUrl}/Auth/refresh-token`, {}, { withCredentials: true })
-      .pipe(map((user : AuthenticateResponse) => {
+      .pipe(map((user: AuthenticateResponse) => {
         this.userSubject.next(user);
         this.startRefreshTokenTimer();
         return user;
       }));
+  }
+
+  isAccountTaken(account: string): Observable<Boolean> {
+    return this.http.post<boolean>(`${environment.apiUrl}/Auth/account-taken`, { account }, { withCredentials: true })
   }
 
   // helper methods
@@ -65,10 +69,10 @@ export class AuthenticationService {
   private refreshTokenTimeout: any;
 
   private startRefreshTokenTimer() {
-    
+
     // parse json object from base64 encoded jwt token
     const jwtToken = JSON.parse(atob(this.userValue.jwtToken?.split('.')[1] || ""));
-    
+
     // set a timeout to refresh the token a minute before it expires
     const expires = new Date(jwtToken.exp * 1000);
     const timeout = expires.getTime() - Date.now() - (60 * 1000);

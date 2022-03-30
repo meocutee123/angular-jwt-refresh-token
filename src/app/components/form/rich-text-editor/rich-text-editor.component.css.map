@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC,SAAS,CAAC,aAAa,CAAC;EAC5B,UAAU,EAAE,IAAI;EAChB,MAAM,EAAE,IAAI;EACZ,IAAI,EAAE,CAAC;EACP,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;CACvB;;AAED,AAAA,KAAK,CAAC,SAAS,CAAC,UAAU,CAAC;EACzB,MAAM,EAAE,IAAI;EACZ,IAAI,EAAE,CAAC;EACP,UAAU,EAAE,IAAI;EAChB,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "rich-text-editor.component.scss"
+    ],
+    "names": [],
+    "file": "rich-text-editor.component.css"
+}

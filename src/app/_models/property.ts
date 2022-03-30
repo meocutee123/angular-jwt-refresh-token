@@ -4,8 +4,8 @@ import { PropertyImage } from "./property-image";
 
 export class Property {
   id!: number;
-  building: Building | undefined;
-  propertyType: PropertyType | undefined;
+  building!: Building;
+  propertyType!: PropertyType;
   roomCount: number | undefined;
   bathCount: number | undefined;
   otherFeatures: OtherFeatures[] = [];

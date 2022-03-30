@@ -1,8 +1,9 @@
+<app-progress #progress></app-progress>
 <div class="d-flex">
-  <div *ngFor="let property of properties | async; index as i" class="card m-2">
+  <div  *ngFor="let property of properties$ | async; index as i" class="card m-2">
     <div class="card-body" [routerLink]="'/back-office/property/' + property.id">
       <h5 class="card-title">
-         {{ property.building?.unit }} - {{ property.building?.city }} - {{ property.building?.state }}
+        {{ property.landlord.name }} - {{ property.building.unit }} - {{ property.building.state }}
       </h5>
       <h6 class="card-subtitle">{{ property.building?.buildingAge }}</h6>
       <p class="card-text">

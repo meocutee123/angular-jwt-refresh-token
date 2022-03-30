@@ -23,6 +23,8 @@ export class PropertyService {
   }
 
   getByKey(key: number): Observable<Property> {
+    if(isNaN(key)) console.error('[API / Get By Key] Unknown key')
+    
     return this._http.get<Property>(environment.apiUrl + `/Property/${key}`)
   }
 }

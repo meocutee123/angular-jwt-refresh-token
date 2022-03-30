@@ -7,7 +7,4 @@ export const getPropertyState = createFeatureSelector<PropertyState>(APP_KEY)
 
 export const getAllProperties = createSelector( getPropertyState, (state: PropertyState) => state.properties )
 
-export const getProperty = createSelector( getPropertyState, (state: PropertyState) => {
-  console.log('Get Property: ', state.property);
-  return state.property
-} )
+export const getProperty = createSelector( getPropertyState, (state: PropertyState) => state.property)

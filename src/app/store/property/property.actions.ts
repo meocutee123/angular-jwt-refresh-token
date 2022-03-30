@@ -7,15 +7,15 @@ export const getAllPropertiesAction = createAction('[Properties / Api] Get All')
 
 export const getAllPropertiesSuccessAction = createAction(
   '[Properties / Api] Properties Loaded Success',
-  props<{ payload : Array<Property>}>());
+  props<{ properties : Array<Property>}>());
 
 export const getPropertyByKeyAction = createAction(
   '[Property / Api] Get By Key',
-  props<{ key: number}>()
+  props<{ key: number }>()
 )
 export const getPropertyByKeySuccessAction = createAction(
   '[Property / Api] Get By Key',
-  props<{ payload: Property}>()
+  props<{ property: Property}>()
 )
 export const addPropertyAction = createAction(
   '[Properties / Api] Add Property',

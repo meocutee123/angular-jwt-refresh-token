@@ -10,7 +10,7 @@ export const SECURE_ROUTES: Routes = [
   { path: 'back-office', component: HomeComponent },
   { path: 'back-office/lease/create', component: LeaseAddComponent },
   { path: 'back-office/properties', component: PropertyComponent },
-  { path: 'back-office/property/:id', component: PropertyDetailsComponent },
-  { path: 'back-officeproperty/create', component: PropertyAddComponent },
+  { path: 'back-office/property/detail/:id', component: PropertyDetailsComponent },
+  { path: 'back-office/property/create', component: PropertyAddComponent },
   { path: '**', component: PageNotFoundComponent},
 ];

@@ -11,7 +11,9 @@
 .form-wrapper {
   form {
     width: 550px;
-  
+    form{
+      width: auto !important;
+    }
     h3 {
       font-size: 18px;
     }
@@ -24,14 +26,7 @@
       padding-left: 10px;
       font-size: 18px;
     }
-    .f-action {
-      color: #7eaf00;
-      display: flex;
-      align-items: center;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-    }
+    
   }
   .form-progress {
     width: 400px;

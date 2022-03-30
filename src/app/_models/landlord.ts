@@ -1,5 +1,6 @@
 export class Landlord {
   id!: number;
+  name: string | undefined;
   street: string | undefined;
   unit: string | undefined;
   city: string | undefined;

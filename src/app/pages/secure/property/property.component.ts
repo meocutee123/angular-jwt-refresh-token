@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProgressComponent } from '@app/components/progress/progress.component';
 import * as FROM_PROPERTY_ACTIONS from '@app/store/property/property.actions';
 import * as FROM_PROPERTY_SELECTOR from '@app/store/property/property.selector';
 import { Property } from '@app/_models/property';
@@ -12,22 +13,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./property.component.scss']
 })
 export class PropertyComponent implements OnInit {
+  @ViewChild('progress', { static: true }) appProgress!: ProgressComponent
 
-  properties: Observable<Property[]> = null as any
+  properties$: Observable<Property[]>
 
   constructor(
     private _router: Router,
     private _store: Store) {
-
+    this.properties$ = this._store.select(FROM_PROPERTY_SELECTOR.getAllProperties)
   }
 
   ngOnInit(): void {
     this._store.dispatch(FROM_PROPERTY_ACTIONS.getAllPropertiesAction())
-    this.getAllProperties();
-  }
-
-  getAllProperties() {
-    this.properties = this._store.select(FROM_PROPERTY_SELECTOR.getAllProperties);
   }
 
   onPropertyClicked(id: number): void {

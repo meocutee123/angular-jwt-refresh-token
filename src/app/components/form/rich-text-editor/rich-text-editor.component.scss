@@ -1,0 +1,14 @@
+:host ::ng-deep .ql-container {
+  min-height: 6rem;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+:host ::ng-deep .ql-editor {
+  height: 100%;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+}

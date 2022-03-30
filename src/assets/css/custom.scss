@@ -20,4 +20,15 @@ $container-max-widths: (
   xxxl: 1640px
 );
 
+
+//Theme
+$theme-colors: (
+  "primary": #7eaf00,
+);
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+
+@for $i from 14 through 30 {
+  .fs-#{$i} {
+    font-size: $i + px; 
+  }
+}

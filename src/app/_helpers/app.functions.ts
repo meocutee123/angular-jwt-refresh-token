@@ -18,3 +18,6 @@ export function ToFormGroup (cs: ControlBase<string>[]){
     });
     return new FormGroup(g);
 }
+export function isEmptyOrSpaces(s : string){
+  return s === null || s.match(/^ *$/) !== null;
+}

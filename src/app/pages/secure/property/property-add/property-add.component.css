@@ -1,1 +1,64 @@
-/* No CSS *//*# sourceMappingURL=property-add.component.css.map */
+.f-title {
+  font-size: 32px;
+  margin-top: 32px;
+}
+
+.f-title .mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+.form-wrapper form {
+  width: 550px;
+}
+
+.form-wrapper form form {
+  width: auto !important;
+}
+
+.form-wrapper form h3 {
+  font-size: 18px;
+}
+
+.form-wrapper form .app-control-input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #d1cfcf;
+  outline: none;
+  padding-left: 10px;
+  font-size: 18px;
+}
+
+.form-wrapper .form-progress {
+  width: 400px;
+  background-color: #e4e4e4;
+  border-radius: 8px;
+  padding: 32px 24px;
+}
+
+.form-wrapper .form-progress ul li {
+  list-style: none;
+  height: 20px;
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+.form-wrapper .form-progress ul li.active {
+  font-weight: 600;
+}
+
+.form-wrapper .form-progress ul li:nth-child(even) {
+  border-left: 1px solid #242424;
+}
+
+.form-wrapper .form-progress button.save {
+  min-width: 150px;
+  background-color: #7eaf00;
+  border-radius: 50px;
+  padding: 4px 0;
+  color: #fff;
+  font-weight: 500;
+}
+/*# sourceMappingURL=property-add.component.css.map */

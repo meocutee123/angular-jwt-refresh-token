@@ -1,0 +1,28 @@
+<div class="mb-3 d-flex flex-column other-feature position-relative" *ngFor="let item of hashmap; let i = index">
+  <label class="fw-bold">{{ item.label }}</label>
+  <input class="app-control-input" value="{{ item.value }}" (keyup)="onOtherFeatureChange($event, i)" id="feature-{{i}}"/>
+  <mat-icon class="remove-feature-icon" aria-hidden="false" (click)="onFieldRemove(i)">delete_outline</mat-icon>
+</div>
+
+<form class="features row align-items-center mx-0" [hidden]="isAddingFeaturesActive" [formGroup]="activeFeature">
+  <mat-form-field appearance="legacy" class="col-5 ps-0">
+    <mat-label>Enter a name</mat-label>
+    <input #label="matInput" matInput formControlName="label" (ngModelChange)="onActiveLabelChange($event)">
+    <mat-error *ngIf="af['label'].invalid && !af['label'].hasError('minlength')">Field name cannot be blank</mat-error>
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 100 characters" appearance="legacy" class="col-5">
+    <input matInput formControlName="value" maxlength="100">
+    <mat-error *ngIf="af['value'].invalid">Field value is required</mat-error>
+    <mat-hint align="end">{{af['value'].value?.length || 0}}/100</mat-hint>
+  </mat-form-field>
+  <div class="col-2">
+    <button mat-button color="warn" (click)="onFeatureAdded($event)">Submit</button>
+    <button mat-button type="button" color="primary" (click)="onCanceled()">Cancel</button>
+  </div>
+</form>
+
+
+<div class="f-action mt-2" (click)="addFeatures()">
+  <mat-icon aria-hidden="false" class="fw-bold me-1">add</mat-icon> Feature
+</div>

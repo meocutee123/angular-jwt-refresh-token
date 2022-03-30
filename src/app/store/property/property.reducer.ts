@@ -9,8 +9,8 @@ export const initialState: PropertyState = {
 
 const propertyReducer = createReducer(
   initialState,
-  on(FROM_PROPERTY_ACTIONS.getAllPropertiesSuccessAction, (state, { payload }) => ({ ...state, properties: payload })),
-  on(FROM_PROPERTY_ACTIONS.getPropertyByKeySuccessAction, (state, { payload }) => ({...state, property: payload })),
+  on(FROM_PROPERTY_ACTIONS.getAllPropertiesSuccessAction, (state, { properties }) => ({ ...state, properties })),
+  on(FROM_PROPERTY_ACTIONS.getPropertyByKeySuccessAction, (state, { property }) => ({...state, property })),
 );
 
 export function reducer(state: any, action: Action) {

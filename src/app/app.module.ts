@@ -21,7 +21,6 @@ import { AuthenticationService } from './_services';
 import { TransformPipe } from './pipes/transform/transform.pipe';
 import { LandingComponent } from './pages/public/landing/landing.component';
 import { ProgressComponent } from './components/progress/progress.component';
-import { HighlightDirective } from './_helpers/directives/highlight.directive';
 import { LeaseAddComponent } from './pages/secure/lease/lease-add/lease-add.component';
 import { LeaseEditComponent } from './pages/secure/lease/lease-edit/lease-edit.component';
 import { PropertyAddComponent } from './pages/secure/property/property-add/property-add.component';
@@ -32,6 +31,12 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './store/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PropertyEffects } from './store/property/property.effects';
+import { OtherFeaturesComponent } from './components/form/other-features/other-features.component';
+import { QuillModule } from 'ngx-quill';
+import { RichTextEditorComponent } from './components/form/rich-text-editor/rich-text-editor.component';
+import { MediaPickerComponent } from './components/form/media-picker/media-picker.component';
+import { DateTimeComponent } from './components/form/date-time/date-time.component';
+import { TextBoxComponent } from './components/form/text-box/text-box.component';
 
 @NgModule({
   declarations: [
@@ -50,8 +55,12 @@ import { PropertyEffects } from './store/property/property.effects';
     PropertyComponent,
     PropertyDetailsComponent,
     PropertyAddComponent,
-    HighlightDirective,
     PageNotFoundComponent,
+    OtherFeaturesComponent,
+    RichTextEditorComponent,
+    MediaPickerComponent,
+    DateTimeComponent,
+    TextBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -64,13 +73,25 @@ import { PropertyEffects } from './store/property/property.effects';
     FontAwesomeModule,
     StoreModule.forRoot(reducer),
     EffectsModule.forRoot([PropertyEffects]),
-
+    QuillModule.forRoot({
+      modules: {
+        syntax: false,
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          [{ 'list': 'ordered'}],
+          [{ 'indent': '+1' }],
+          [{ 'header': [2, 3, false] }],
+          [{ 'color': [] }],
+          [{ 'align': [] }],
+          ['link', 'image']  
+        ]
+      }
+    })
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthenticationService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
     // provider used to create fake backend
     // ngfakeBackendProvider
   ],

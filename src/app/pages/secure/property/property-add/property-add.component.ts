@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GetFormFields } from '@app/_helpers';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { OtherFeaturesComponent } from '@app/components/form/other-features/other-features.component';
+import { GetFormFields, isEmptyOrSpaces } from '@app/_helpers';
 import { Property } from '@app/_models/property';
-import { PropertyService } from '@app/_services/property.service';
-import { first } from 'rxjs';
+import { PropertyOtherFeature } from '@app/_models/property-other-feature';
 
 @Component({
   selector: 'app-property-add',
@@ -11,12 +11,11 @@ import { first } from 'rxjs';
   styleUrls: ['./property-add.component.scss']
 })
 export class PropertyAddComponent implements OnInit {
+  @ViewChild('otherFearures', { static: true }) otherFearures!: OtherFeaturesComponent
 
   isSubmitted: boolean = false;
 
   dynamicForm: FormGroup = new FormGroup({})
-  hashmap: any[] = []
-
 
   conditions: any[] = [
     { key: 1, value: "Good" },
@@ -26,16 +25,16 @@ export class PropertyAddComponent implements OnInit {
 
   properties: Property[] = []
   property: Property = null as any;
-  constructor(private fb: FormBuilder, private _propertyService: PropertyService) {
+  constructor(private fb: FormBuilder) {
   }
 
   get f() { return this.dynamicForm.controls; }
-  get fa() { return this.f['additional'] as FormArray; }
-
-  get extrasInformation() { return this.fa.controls as FormGroup[]; }
+  get fa() { return this.f['features'] as FormArray; }
+  get ofs() { return this.fa.controls as FormGroup[]; }
 
   ngOnInit(): void {
     this.dynamicForm = this.fb.group({
+      totalQuantity: [60, [Validators.required, Validators.max(100)]],
       streetAddress: ['', Validators.required],
       unit: ['', Validators.required],
       city: [''],
@@ -43,33 +42,50 @@ export class PropertyAddComponent implements OnInit {
       zipCode: [''],
       features: new FormArray([])
     })
-
-    this._propertyService.getByKey(1).pipe(first()).subscribe(property => {
-      // this.f['description'].setValue(property.description)
-      // this.f['condition'].setValue(property.condition)
-      // this.f['color'].setValue(property.color)
-
-      // const { additional: extrasInformation } = property
-
-      // if (extrasInformation.length) {
-
-      //   extrasInformation.forEach(item => {
-      //     this.fa.push(this.fb.group({ ['' + item.key]: [item.value, Validators.required] }))
-      //     this.hashmap.push(item)
-      //   })
-
-      // }
-    });
-
   }
 
   onReset(): void {
     this.dynamicForm.reset()
   }
 
-  onSubmit() : void {
-    const property : Property  = GetFormFields(this.dynamicForm, new Property())
+  onSubmit(): void {
+    this.isSubmitted = true
+    // if(this.dynamicForm.invalid) return
+    
+    const property: Property = GetFormFields(this.dynamicForm, new Property())
     console.log(property);
     
   }
+
+  addFeatures(e : PropertyOtherFeature): void {
+    const fieldIndex = this.isFieldExist(e.fieldAlias)
+    if (fieldIndex != -1) {
+      document.querySelector(`#feature-${fieldIndex}`)?.classList.add('invalid')
+      alert('Duplicate property aliases not allowed')
+      return
+    }
+
+    this.fa.push(this.fb.group({
+      label: new FormControl(e.label, Validators.required),
+      fieldAlias: new FormControl(e.fieldAlias, Validators.required),
+      value: new FormControl(e.value, Validators.required),
+    }))
+
+    this.otherFearures.isAddingFeaturesActive = false;
+    this.otherFearures.onCanceled()
+  }
+
+  isFieldExist(field: string): number {
+    return this.fa.getRawValue().findIndex(control => control.fieldAlias == field)
+  }
+
+  onOtherFeatureChange(e: any) {
+    this.fa.controls[e.index].patchValue({ value: e.value })
+  }
+
+  onFieldRemove(index: number): void {
+    this.fa.removeAt(index)
+  }
+
+  
 }

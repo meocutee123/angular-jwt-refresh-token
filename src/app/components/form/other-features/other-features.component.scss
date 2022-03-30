@@ -1,0 +1,31 @@
+.f-action {
+  color: #7eaf00;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+.remove-feature-icon {
+  position: absolute;
+  right: .5em;
+  bottom: .3em;
+  cursor: pointer;
+  color: #e4e4e4;
+  transition: .3s ease;
+  &:hover {
+    color: black;
+  }
+}
+.invalid {
+  border: 1px solid red;
+}
+
+.app-control-input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgb(209, 207, 207);
+  outline: none;
+  padding-left: 10px;
+  font-size: 18px;
+}

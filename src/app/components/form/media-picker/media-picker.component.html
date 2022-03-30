@@ -1,0 +1,14 @@
+<p>media-picker works!</p>
+<div class="preview row row-cols-3 g-2">
+  <div class="col" *ngFor="let item of files; let i = index">
+    <div class="item border p3 position-relative">
+      <img [src]="item" alt=""/>
+      <mat-icon aria-hidden="false" class="fw-bold times pointer text-primary" (click)="remove(i)">close</mat-icon>
+    </div>
+  </div>
+</div>
+<input type="file" id="image" name="image" accept="image/*" hidden (change)="onUpload($event)"/>
+<label for="image" class="d-flex align-items-center mt-2 fw-bold text-primary fs-16 pointer">
+  <mat-icon aria-hidden="false" class="fw-bold me-1">add</mat-icon>
+  <span>Image</span>
+</label>

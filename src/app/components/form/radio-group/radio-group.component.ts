@@ -1,24 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
-import { isEmptyOrSpaces } from '@app/_helpers';
-import { ContentChange, EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
+import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
-  selector: 'app-rich-text-editor',
-  templateUrl: './rich-text-editor.component.html',
-  styleUrls: ['./rich-text-editor.component.scss'],
+  selector: 'app-radio-group',
+  templateUrl: './radio-group.component.html',
+  styleUrls: ['./radio-group.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: RichTextEditorComponent
+      useExisting: RadioGroupComponent
     }
   ]
 })
-export class RichTextEditorComponent implements ControlValueAccessor {
-
+export class RadioGroupComponent implements ControlValueAccessor {
 
   @Input() label: string = ''
+  @Input() options: any[] = []
   @Input() errorMessage: string = 'Value cannot be blank'
   @Input() validation: boolean = false
   value: string = ''
@@ -33,9 +32,9 @@ export class RichTextEditorComponent implements ControlValueAccessor {
   onValidatorChange = () => { }
   onTouched = () => { };
 
-  onValueChange(e: ContentChange): void {
-    this.markAsTouched()    
-    this.value = e.html || ''
+  onValueChange(e: MatRadioChange): void {
+    this.markAsTouched()
+    this.value = e.value
     this.onChange(this.value)
   }
 
@@ -58,30 +57,8 @@ export class RichTextEditorComponent implements ControlValueAccessor {
     }
   }
 
-  setDisabledState(disabled: boolean): void {
-    this.disabled = disabled;
-  }
-
   validate(control: AbstractControl): ValidationErrors | null {
-
-    if (!this.validation) return null
-
-    if (this.firstRender) {
-      this.firstRender = false
-      return null
-    } else {
-      const value = control.value;
-      if (isEmptyOrSpaces(value)) {
-        this.hasError = true
-        return {
-          mustNotEmpty: {
-            value
-          }
-        };
-      }
-      this.hasError = false
-      return null
-    }
+    return null
   }
 
 }

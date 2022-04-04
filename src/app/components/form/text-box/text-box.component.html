@@ -1,5 +1,5 @@
 <div class="mb-3 d-flex flex-column">
   <label class="fw-bold">{{ label }}</label>
   <input class="app-control-input" (change)="onValueChange($event)"/>
-  <mat-error error class="fs-10 fw-bold" *ngIf="!firstRender && hasError">{{ errorMessage }}</mat-error>
+  <mat-error error class="fs-12 fw-bold" *ngIf="!firstRender && hasError">{{ errorMessage }}</mat-error>
 </div>

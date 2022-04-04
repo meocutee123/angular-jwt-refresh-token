@@ -23,7 +23,7 @@ export class TextBoxComponent implements ControlValueAccessor, Validator {
 
   @Input() label: string = ''
   @Input() errorMessage: string = 'Value cannot be blank'
-
+  @Input() validation: boolean = false
   value: string = ''
 
   hasError: boolean = false
@@ -67,13 +67,14 @@ export class TextBoxComponent implements ControlValueAccessor, Validator {
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
+
+    if(!this.validation) return null
+
     if (this.firstRender) {
       this.firstRender = false
       return null
     } else {
       const value = control.value;
-      console.log(value);
-      
       if (isEmptyOrSpaces(value)) {
         this.hasError = true
         return {

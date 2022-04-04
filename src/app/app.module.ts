@@ -37,6 +37,7 @@ import { RichTextEditorComponent } from './components/form/rich-text-editor/rich
 import { MediaPickerComponent } from './components/form/media-picker/media-picker.component';
 import { DateTimeComponent } from './components/form/date-time/date-time.component';
 import { TextBoxComponent } from './components/form/text-box/text-box.component';
+import { RadioGroupComponent } from './components/form/radio-group/radio-group.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { TextBoxComponent } from './components/form/text-box/text-box.component'
     RichTextEditorComponent,
     MediaPickerComponent,
     DateTimeComponent,
-    TextBoxComponent
+    TextBoxComponent, 
+    RadioGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,7 @@ import { TextBoxComponent } from './components/form/text-box/text-box.component'
           [{ 'header': [2, 3, false] }],
           [{ 'color': [] }],
           [{ 'align': [] }],
-          ['link', 'image']  
+          ['link']  
         ]
       }
     })

@@ -1,0 +1,53 @@
+:host ::ng-deep .mat-form-field{
+  display: unset !important;
+}
+
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #fff !important;
+  padding: 0;
+  display: initial !important;
+}
+
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before{
+  background-color: #fff;
+}
+:host ::ng-deep .mat-form-field-wrapper{
+  padding-bottom: 0 !important;
+}
+:host ::ng-deep .mat-form-field-ripple {
+  background-color: #fff;
+}
+:host ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #fff;
+}
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix{
+  padding: 0;
+  padding-bottom: 0.75em;
+}
+:host ::ng-deep .mat-input-element {
+  caret-color: #000;
+}
+
+label {
+  font-weight: 700 !important
+}
+
+input.mat-input-element {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgb(209, 207, 207);
+  outline: none;
+  padding-left: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+:host ::ng-deep .mat-form-field-infix {
+  border-top: none;
+  width: unset !important;
+}
+:host ::ng-deep .mat-form-field-prefix, :host ::ng-deep .mat-form-field-suffix{
+  display: inline-block;
+  position: absolute;
+  top: 25%;
+  right: .5em
+}

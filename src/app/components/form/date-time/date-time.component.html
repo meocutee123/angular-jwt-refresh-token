@@ -1,1 +1,9 @@
-<p>date-time works!</p>
+<mat-form-field class="example-full-width" appearance="fill">
+  <label>Choose a date</label>
+  <input matInput [matDatepicker]="picker" (dateChange)="onValueChange($event)">
+  <mat-error error class="fs-12 fw-bold" *ngIf="!firstRender && hasError">{{ errorMessage }}</mat-error>
+  <mat-datepicker-toggle matSuffix [for]="picker">
+    <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

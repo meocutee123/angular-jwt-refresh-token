@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { GetFormFields, isEmptyOrSpaces } from '@app/_helpers';
@@ -11,9 +11,12 @@ import { PropertyOtherFeature } from '@app/_models/property-other-feature';
 })
 export class OtherFeaturesComponent implements OnInit {
 
+  @Input() legend: string = 'Feature'
+  @Input() formArray: string = ''
+
   @ViewChild('label', { static: true }) label!: MatInput;
 
-  @Output() featureAdded: EventEmitter<PropertyOtherFeature> = new EventEmitter<PropertyOtherFeature>()
+  @Output() featureAdded: any = new EventEmitter<any>()
   @Output() featureChanged: EventEmitter<any> = new EventEmitter<any>()
 
   isAddingFeaturesActive: boolean = true;
@@ -41,7 +44,13 @@ export class OtherFeaturesComponent implements OnInit {
 
     this.hashmap.push(feature)
     this.activeFeature.reset()
-    this.featureAdded.emit(feature)
+    this.featureAdded.emit({
+      value: feature,
+      formArrayName: this.formArray
+    })
+
+    this.isAddingFeaturesActive = true;
+    this.activeFeature.reset()
   }
   onCanceled(): void {
     this.activeFeature.reset()

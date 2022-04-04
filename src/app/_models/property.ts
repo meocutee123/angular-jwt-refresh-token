@@ -10,7 +10,7 @@ export class Property {
   bathCount: number | undefined;
   otherFeatures: OtherFeatures[] = [];
   images: PropertyImage[] = [];
-  highlight: string = '';
+  highlights: string = '';
   amenities: PropertyAmenity[] = [];
   additionalInformation: AdditionalInformation[] = [];
   landlord!: Landlord;

@@ -27,7 +27,7 @@ $theme-colors: (
 );
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
-@for $i from 14 through 30 {
+@for $i from 12 through 30 {
   .fs-#{$i} {
     font-size: $i + px; 
   }

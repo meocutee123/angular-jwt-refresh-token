@@ -1,0 +1,6 @@
+<div class="mb-3 d-flex flex-column">
+  <label class="fw-bold">{{ label }}</label>
+  <mat-radio-group aria-label="Select an option"(change)="onValueChange($event)">
+    <mat-radio-button *ngFor="let option of options" [value]="option.value" class="me-2">{{ option.text }}</mat-radio-button>
+  </mat-radio-group>
+</div>

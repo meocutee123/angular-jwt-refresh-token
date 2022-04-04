@@ -2,105 +2,52 @@
   <mat-icon aria-hidden="false">business</mat-icon>
   Properties - Add New Property
 </div>
-<div class="form-wrapper d-flex justify-content-center gx-3">
-  <form [formGroup]="dynamicForm" class="d-flex flex-column px-3 mt-4">
+<div class="form-wrapper">
+  <form [formGroup]="form" class="d-flex flex-column px-3 mt-4">
     <h3 class="fw-bold">Property Overiew</h3>
-    
-    <app-text-box formControlName="streetAddress" label="Street Address" errorMessage="Street Address cannot be blank"></app-text-box>
 
-
-    <!-- <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">Street Address</label>
-      <input class="app-control-input" formControlName="streetAddress" />
-      <mat-error *ngIf="isSubmitted && f['streetAddress'].invalid">Street address is required</mat-error>
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">Unit</label>
-      <input class="app-control-input" formControlName="unit" />
-      <mat-error *ngIf="isSubmitted && f['unit'].invalid">Unit is required</mat-error>
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">City</label>
-      <input class="app-control-input" formControlName="city" />
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">State</label>
-      <input class="app-control-input" formControlName="state" />
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">Zip Code</label>
-      <input class="app-control-input" formControlName="zipCode" />
-    </div>
-
-    <app-other-features #otherFearures (featureAdded)="addFeatures($event)"
+    <app-text-box formControlName="streetAddress" label="Street Address" [validation]="true"
+      errorMessage="Street Address cannot be blank"></app-text-box>
+    <app-text-box formControlName="unit" label="Unit" [validation]="true" errorMessage="Unit cannot be blank">
+    </app-text-box>
+    <app-text-box formControlName="city" label="City"></app-text-box>
+    <app-text-box formControlName="state" label="State"></app-text-box>
+    <app-text-box formControlName="zipCode" label="Zip Code"></app-text-box>
+    <app-text-box formControlName="propertyType" label="Property Type"></app-text-box>
+    <app-text-box formControlName="buidingAge" label="Building Age"></app-text-box>
+    <app-text-box formControlName="rooms" label="Rooms"></app-text-box>
+    <app-text-box formControlName="baths" label="Baths"></app-text-box>
+    <app-other-features (featureAdded)="addFeatures($event)" formArray="otherFeatures"
       (featureChanged)="onOtherFeatureChange($event)">
     </app-other-features>
 
-    <hr />
+    <hr id="gallery" />
     <h3 class="fw-bold">Gallery</h3>
     <app-media-picker></app-media-picker>
 
-    <hr />
+    <hr id="highlights" />
     <h3 class="fw-bold">Highlights</h3>
-    <app-rich-text-editor></app-rich-text-editor>
+    <app-rich-text-editor formControlName="highlights"></app-rich-text-editor>
 
-    <hr />
+    <hr id="highlights" />
     <h3 class="fw-bold">Amenities</h3>
-    <app-other-features #otherFearures (featureAdded)="addFeatures($event)"
-      (featureChanged)="onOtherFeatureChange($event)">
+    <app-other-features (featureAdded)="addFeatures($event)" legend="Amenities"
+    formArray="additionalInformation" (featureChanged)="onOtherFeatureChange($event)">
     </app-other-features>
 
-    <hr />
+    <hr id="information" />
     <h3 class="fw-bold">Additional Information</h3>
-    <app-other-features #otherFearures (featureAdded)="addFeatures($event)"
-      (featureChanged)="onOtherFeatureChange($event)">
+    <app-other-features (featureAdded)="addFeatures($event)" legend="Information"
+      formArray="additionalInformation" (featureChanged)="onOtherFeatureChange($event)">
     </app-other-features>
 
-    <hr />
+    <hr id="information" />
     <h3 class="fw-bold">Landlord Information</h3>
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">Street Address</label>
-      <input class="app-control-input" formControlName="streetAddress" />
-      <mat-error *ngIf="isSubmitted && f['streetAddress'].invalid">Street address is required</mat-error>
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">Unit</label>
-      <input class="app-control-input" formControlName="unit" />
-      <mat-error *ngIf="isSubmitted && f['unit'].invalid">Unit is required</mat-error>
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">City</label>
-      <input class="app-control-input" formControlName="city" />
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">State</label>
-      <input class="app-control-input" formControlName="state" />
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold">Zip Code</label>
-      <input class="app-control-input" formControlName="zipCode" />
-    </div>
-
-    <div class="mb-3 d-flex flex-column">
-      <label class="fw-bold mb-2">Preferred Contact Method</label>
-
-      <mat-radio-group>
-        <mat-radio-button value="auto" class="me-5">Email Address</mat-radio-button>
-        <mat-radio-button value="always">Phone Number</mat-radio-button>
-      </mat-radio-group>
-
-    </div>
-    <app-other-features #otherFearures (featureAdded)="addFeatures($event)"
-      (featureChanged)="onOtherFeatureChange($event)">
-    </app-other-features> -->
+    <app-radio-group formControlName="preferredContactMethod" label="Preferred Contact Method" [options]="options">
+    </app-radio-group>
+    <app-other-features (featureAdded)="addFeatures($event)" legend="Information"
+      formArray="landlordInformation" (featureChanged)="onOtherFeatureChange($event)">
+    </app-other-features>
   </form>
   <div class="form-progress">
     <h2 class="fw-bold">Form Progress</h2>

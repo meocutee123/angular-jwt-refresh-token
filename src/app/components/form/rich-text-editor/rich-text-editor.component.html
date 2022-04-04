@@ -1,5 +1,5 @@
 <div class="mb-3 d-flex flex-column">
   <label *ngIf="label != ''" class="fw-bold">{{ label }}</label>
-  <quill-editor></quill-editor>
+  <quill-editor placeholder="" (onContentChanged)="onValueChange($event)"></quill-editor>
 </div>
 
